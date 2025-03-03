@@ -1,0 +1,83 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvcu8ohnypqj1"]
+
+[ext_resource type="Script" path="res://settings.gd" id="1_n3i2b"]
+[ext_resource type="Texture2D" uid="uid://dle02cn0662kf" path="res://blue-with-stars.png" id="2_83j6u"]
+[ext_resource type="FontFile" uid="uid://c6w3pd4o14s3y" path="res://Buttons/PixelSerif_16px_v02.ttf" id="3_stnct"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n3i2b")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_83j6u")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Vol" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_stnct")
+theme_override_font_sizes/font_size = 40
+text = "Volume"
+
+[node name="Volume" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Mute" type="CheckBox" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_stnct")
+theme_override_font_sizes/font_size = 40
+text = "MUTE"
+
+[node name="Resolutions" type="OptionButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "1920x1080"
+popup/item_1/text = "1600x900"
+popup/item_1/id = 1
+popup/item_2/text = "1280x720"
+popup/item_2/id = 2
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_stnct")
+theme_override_font_sizes/font_size = 40
+text = "FULL SCREEN"
+
+[node name="Main_Menu" type="Button" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_stnct")
+theme_override_font_sizes/font_size = 40
+text = "MAIN MENU"
+
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Mute" to="." method="_on_mute_toggled"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/Resolutions" to="." method="_on_resolutions_item_selected"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Main_Menu" to="." method="_on_main_menu_pressed"]

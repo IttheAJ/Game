@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bes22ejb5w3qq"]
+
+[ext_resource type="PackedScene" uid="uid://d2u2gshby4m5u" path="res://player.tscn" id="1_641wj"]
+[ext_resource type="Texture2D" uid="uid://b4l00pm3cltsg" path="res://Level1/10.png" id="2_cor4j"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_641wj")]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Player"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Player/ParallaxBackground"]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(2304, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
+position = Vector2(-400, 74)
+texture = ExtResource("2_cor4j")
