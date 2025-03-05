@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://con5ol3jlolvi"]
+[gd_scene load_steps=5 format=3 uid="uid://con5ol3jlolvi"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_xi3be"]
-[ext_resource type="Texture2D" uid="uid://dle02cn0662kf" path="res://blue-with-stars.png" id="2_e4ykq"]
+[ext_resource type="Script" path="res://parallax_background.gd" id="2_qhmrr"]
+[ext_resource type="Texture2D" uid="uid://bf3twmtfqrvbf" path="res://plain_starfield_1.png" id="4_0njxe"]
 [ext_resource type="FontFile" uid="uid://c6w3pd4o14s3y" path="res://Buttons/PixelSerif_16px_v02.ttf" id="8_oquf1"]
 
 [node name="Menu" type="Control"]
@@ -13,15 +14,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xi3be")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_e4ykq")
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("2_qhmrr")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(576, 329)
+scale = Vector2(0.140991, 0.160645)
+texture = ExtResource("4_0njxe")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -67,14 +70,15 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -215.0
-offset_top = 81.0
-offset_right = 220.0
-offset_bottom = 146.0
+offset_left = -136.0
+offset_top = 87.0
+offset_right = 299.0
+offset_bottom = 152.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("8_oquf1")
 theme_override_font_sizes/font_size = 80
-text = "DR3AM TEAM"
+text = "DR3AM3R
+"
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]

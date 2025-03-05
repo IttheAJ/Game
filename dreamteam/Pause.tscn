@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cn4ehfeqx3py0"]
+[gd_scene load_steps=5 format=3 uid="uid://cn4ehfeqx3py0"]
 
 [ext_resource type="Shader" path="res://Pause.gdshader" id="1_2i833"]
 [ext_resource type="FontFile" uid="uid://c6w3pd4o14s3y" path="res://Buttons/PixelSerif_16px_v02.ttf" id="1_dgskt"]
+[ext_resource type="Script" path="res://pause.gd" id="2_3hm2c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gslt7"]
 shader = ExtResource("1_2i833")
@@ -15,11 +16,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_3hm2c")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
 offset_right = 188.0
-offset_bottom = 131.0
+offset_bottom = 177.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -33,6 +37,13 @@ theme_override_fonts/font = ExtResource("1_dgskt")
 theme_override_font_sizes/font_size = 40
 text = "Resume"
 
+[node name="SAVE" type="Button" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_dgskt")
+theme_override_font_sizes/font_size = 40
+text = "SAVE"
+
 [node name="Options" type="Button" parent="VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
@@ -40,9 +51,14 @@ theme_override_fonts/font = ExtResource("1_dgskt")
 theme_override_font_sizes/font_size = 40
 text = "Options"
 
-[node name="MainMenu" type="Button" parent="VBoxContainer"]
+[node name="QUIT" type="Button" parent="VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_dgskt")
 theme_override_font_sizes/font_size = 40
-text = "Main Menu"
+text = "QUIT"
+
+[connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/SAVE" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/QUIT" to="." method="_on_quit_pressed"]

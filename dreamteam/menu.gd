@@ -11,11 +11,11 @@ func _process(delta: float) -> void:
 	pass
 
 
-
+#res://Level1/Level1.tscn
 
 
 func _on_start_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Level1/Level1.tscn")
+	get_tree().change_scene_to_file("res://temp.tscn")
 
 func _on_options_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Options/Options.tscn")

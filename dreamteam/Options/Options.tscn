@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvcu8ohnypqj1"]
+[gd_scene load_steps=5 format=3 uid="uid://dvcu8ohnypqj1"]
 
 [ext_resource type="Script" path="res://settings.gd" id="1_n3i2b"]
-[ext_resource type="Texture2D" uid="uid://dle02cn0662kf" path="res://blue-with-stars.png" id="2_83j6u"]
+[ext_resource type="Script" path="res://parallax_background.gd" id="3_63ss6"]
 [ext_resource type="FontFile" uid="uid://c6w3pd4o14s3y" path="res://Buttons/PixelSerif_16px_v02.ttf" id="3_stnct"]
+[ext_resource type="Texture2D" uid="uid://bf3twmtfqrvbf" path="res://plain_starfield_1.png" id="4_dr7lk"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -12,16 +13,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n3i2b")
-
-[node name="TextureRect" type="TextureRect" parent="."]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_83j6u")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -75,6 +66,18 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3_stnct")
 theme_override_font_sizes/font_size = 40
 text = "MAIN MENU"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("3_63ss6")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(576, 329)
+scale = Vector2(0.140991, 0.160645)
+texture = ExtResource("4_dr7lk")
 
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
 [connection signal="toggled" from="MarginContainer/VBoxContainer/Mute" to="." method="_on_mute_toggled"]
