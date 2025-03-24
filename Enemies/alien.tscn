@@ -1,0 +1,108 @@
+[gd_scene load_steps=16 format=3 uid="uid://bjyhxbo3fis4v"]
+
+[ext_resource type="Script" path="res://Enemies/alien.gd" id="1_glpks"]
+[ext_resource type="Texture2D" uid="uid://76wwa0jkwmmc" path="res://Enemies/alien-enemy-idle.png" id="2_k0w8f"]
+[ext_resource type="Texture2D" uid="uid://2mjj0pl2bto1" path="res://Enemies/alien-enemy-walk.png" id="3_02nt2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ka7cu"]
+size = Vector2(88, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mawc"]
+atlas = ExtResource("2_k0w8f")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3bao"]
+atlas = ExtResource("2_k0w8f")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktdv1"]
+atlas = ExtResource("2_k0w8f")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ik55q"]
+atlas = ExtResource("2_k0w8f")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ha61e"]
+atlas = ExtResource("3_02nt2")
+region = Rect2(0, 0, 57, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7ev2"]
+atlas = ExtResource("3_02nt2")
+region = Rect2(57, 0, 57, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ybbn"]
+atlas = ExtResource("3_02nt2")
+region = Rect2(114, 0, 57, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5k4ym"]
+atlas = ExtResource("3_02nt2")
+region = Rect2(171, 0, 57, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jdaw"]
+atlas = ExtResource("3_02nt2")
+region = Rect2(228, 0, 57, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0x3yr"]
+atlas = ExtResource("3_02nt2")
+region = Rect2(285, 0, 57, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1jcuf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mawc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3bao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktdv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ik55q")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ha61e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7ev2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ybbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5k4ym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jdaw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0x3yr")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Alien" type="CharacterBody2D" groups=["Hurt"]]
+script = ExtResource("1_glpks")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(49, 43)
+shape = SubResource("RectangleShape2D_ka7cu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(37, 30.5)
+scale = Vector2(2.54167, 2.27083)
+sprite_frames = SubResource("SpriteFrames_1jcuf")
+animation = &"walk"
+autoplay = "walk"
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true

@@ -1,0 +1,91 @@
+[gd_scene load_steps=13 format=3 uid="uid://xt4tvgi4vdg"]
+
+[ext_resource type="Script" path="res://Enemies/Eye.gd" id="1_glpks"]
+[ext_resource type="Texture2D" uid="uid://de868yweqcpwx" path="res://Enemies/Spritesheet_DemonEye.png" id="2_xb3ib"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oqwng"]
+size = Vector2(65, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnxnv"]
+atlas = ExtResource("2_xb3ib")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdg5o"]
+atlas = ExtResource("2_xb3ib")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpg0r"]
+atlas = ExtResource("2_xb3ib")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lg17v"]
+atlas = ExtResource("2_xb3ib")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4lhi"]
+atlas = ExtResource("2_xb3ib")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6jdg"]
+atlas = ExtResource("2_xb3ib")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gskfb"]
+atlas = ExtResource("2_xb3ib")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cv5v"]
+atlas = ExtResource("2_xb3ib")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ls7cd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gnxnv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdg5o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cpg0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lg17v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4lhi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6jdg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gskfb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cv5v")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[node name="Eye" type="Area2D" groups=["Hurt"]]
+script = ExtResource("1_glpks")
+flip_time = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(29.5, 22.5)
+shape = SubResource("RectangleShape2D_oqwng")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(20.5, 14)
+scale = Vector2(1.85417, 1.58333)
+sprite_frames = SubResource("SpriteFrames_ls7cd")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://cvc0egu4hjk27"]
+
+[ext_resource type="Script" path="res://Level1/diamond.gd" id="1_lb2s5"]
+[ext_resource type="Texture2D" uid="uid://bs6rbgyr6ms43" path="res://diamond/atlas.png" id="1_uk6d8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kid1g"]
+atlas = ExtResource("1_uk6d8")
+region = Rect2(0, 0, 17, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvsc3"]
+atlas = ExtResource("1_uk6d8")
+region = Rect2(17, 0, 17, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6668u"]
+atlas = ExtResource("1_uk6d8")
+region = Rect2(34, 0, 17, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knse7"]
+atlas = ExtResource("1_uk6d8")
+region = Rect2(51, 0, 17, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bbdd"]
+atlas = ExtResource("1_uk6d8")
+region = Rect2(68, 0, 17, 13)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ii35l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kid1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qvsc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6668u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knse7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6bbdd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ablja"]
+radius = 6.0
+
+[node name="Diamond" type="Node2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_lb2s5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ii35l")
+autoplay = "default"
+frame = 1
+frame_progress = 0.0483642
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
+position = Vector2(-1, -1)
+shape = SubResource("CircleShape2D_ablja")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -12.0
+offset_right = 20.0
+offset_bottom = 11.0
+text = "1"
+horizontal_alignment = 1
