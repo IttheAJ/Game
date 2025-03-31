@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://cn4ehfeqx3py0"]
+
+[ext_resource type="Shader" path="res://Pause.gdshader" id="1_2i833"]
+[ext_resource type="FontFile" uid="uid://c6w3pd4o14s3y" path="res://Buttons/PixelSerif_16px_v02.ttf" id="1_dgskt"]
+[ext_resource type="Script" path="res://pause.gd" id="2_3hm2c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gslt7"]
+shader = ExtResource("1_2i833")
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+material = SubResource("ShaderMaterial_gslt7")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_3hm2c")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = -88.0
+offset_right = 94.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="PanelContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_dgskt")
+theme_override_font_sizes/font_size = 40
+text = "Resume"
+
+[node name="SAVE" type="Button" parent="PanelContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_dgskt")
+theme_override_font_sizes/font_size = 40
+text = "SAVE"
+
+[node name="Options" type="Button" parent="PanelContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_dgskt")
+theme_override_font_sizes/font_size = 40
+text = "Options"
+
+[node name="QUIT" type="Button" parent="PanelContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_dgskt")
+theme_override_font_sizes/font_size = 40
+text = "QUIT"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/SAVE" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/QUIT" to="." method="_on_quit_pressed"]

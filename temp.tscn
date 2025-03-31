@@ -1,0 +1,151 @@
+[gd_scene load_steps=18 format=3 uid="uid://bes22ejb5w3qq"]
+
+[ext_resource type="PackedScene" uid="uid://d2u2gshby4m5u" path="res://player.tscn" id="1_641wj"]
+[ext_resource type="Script" path="res://temp.gd" id="1_q06fe"]
+[ext_resource type="Texture2D" uid="uid://b8kg801anc1d2" path="res://Level1/1.Sky.png" id="2_ajtwr"]
+[ext_resource type="Texture2D" uid="uid://ccbty0yc0kap0" path="res://Level1/2.Buildings.png" id="3_qqnve"]
+[ext_resource type="Texture2D" uid="uid://ffmvppllwkvf" path="res://Level1/3.River.png" id="4_8hqco"]
+[ext_resource type="Texture2D" uid="uid://d3w67tcbkukwi" path="res://Level1/4.Sidewalk.png" id="5_qlp7j"]
+[ext_resource type="PackedScene" uid="uid://cn4ehfeqx3py0" path="res://Pause.tscn" id="7_bjd1f"]
+[ext_resource type="PackedScene" uid="uid://b18dxfcrpy6e1" path="res://Level1/Diamonds.tscn" id="7_plf5u"]
+[ext_resource type="PackedScene" uid="uid://xt4tvgi4vdg" path="res://Enemies/Eye.tscn" id="9_otrvv"]
+[ext_resource type="FontFile" uid="uid://c6w3pd4o14s3y" path="res://Buttons/PixelSerif_16px_v02.ttf" id="10_qv4uc"]
+[ext_resource type="PackedScene" uid="uid://bjyhxbo3fis4v" path="res://Enemies/alien.tscn" id="10_x5qce"]
+[ext_resource type="Script" path="res://diamonds.gd" id="11_e7o8p"]
+[ext_resource type="Script" path="res://health.gd" id="11_lm2b0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_404aa"]
+size = Vector2(14627, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvcbo"]
+size = Vector2(124, 430)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ro1qs"]
+size = Vector2(162, 594.75)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a8eiu"]
+radius = 20.4083
+
+[node name="temp" type="Node2D"]
+script = ExtResource("1_q06fe")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(760, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
+position = Vector2(384, 211)
+scale = Vector2(2.4, 2.5)
+texture = ExtResource("2_ajtwr")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(760, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture_filter = 1
+position = Vector2(384, 211.5)
+scale = Vector2(2.3875, 2.50556)
+texture = ExtResource("3_qqnve")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.4, 0.4)
+motion_mirroring = Vector2(760, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+texture_filter = 1
+position = Vector2(384, 212)
+scale = Vector2(2.39375, 2.51111)
+texture = ExtResource("4_8hqco")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.8, 0.8)
+motion_mirroring = Vector2(760, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+texture_filter = 1
+position = Vector2(383, 212)
+scale = Vector2(2.3875, 2.5)
+texture = ExtResource("5_qlp7j")
+
+[node name="Eye" parent="." instance=ExtResource("9_otrvv")]
+position = Vector2(900, 210)
+
+[node name="Alien2" parent="." instance=ExtResource("10_x5qce")]
+position = Vector2(388, 313)
+
+[node name="Pickups" type="Node2D" parent="."]
+
+[node name="TestPickup" parent="Pickups" instance=ExtResource("7_plf5u")]
+position = Vector2(270, 334)
+
+[node name="TestPickup2" parent="Pickups" instance=ExtResource("7_plf5u")]
+position = Vector2(321, 334)
+
+[node name="Player" parent="." instance=ExtResource("1_641wj")]
+position = Vector2(0, 291)
+
+[node name="Camera2D2" type="Camera2D" parent="Player" groups=["camera"]]
+offset = Vector2(0, -15)
+zoom = Vector2(1.5, 1.5)
+limit_left = 0
+limit_top = 0
+limit_bottom = 202
+
+[node name="Bounds" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds"]
+position = Vector2(7314.5, 413)
+shape = SubResource("RectangleShape2D_404aa")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Bounds"]
+position = Vector2(-63, 199)
+shape = SubResource("RectangleShape2D_dvcbo")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Bounds"]
+position = Vector2(14716, 102.375)
+shape = SubResource("RectangleShape2D_ro1qs")
+
+[node name="Transition" type="Area2D" parent="."]
+position = Vector2(139, 338)
+scale = Vector2(2, 2)
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Transition"]
+position = Vector2(7225.5, 1.5)
+shape = SubResource("CircleShape2D_a8eiu")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Health" type="Label" parent="UI"]
+texture_filter = 1
+offset_right = 52.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("10_qv4uc")
+theme_override_font_sizes/font_size = 40
+text = "Health: "
+script = ExtResource("11_lm2b0")
+
+[node name="Diamonds" type="Label" parent="UI"]
+texture_filter = 1
+offset_left = 1.0
+offset_top = 29.0
+offset_right = 179.0
+offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("10_qv4uc")
+theme_override_font_sizes/font_size = 40
+text = "Diamonds: "
+script = ExtResource("11_e7o8p")
+
+[node name="pausee" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="pausee" instance=ExtResource("7_bjd1f")]
+visible = false
+anchors_preset = -1
+grow_horizontal = 1
+grow_vertical = 1
+
+[connection signal="body_entered" from="Transition" to="." method="_on_transition_body_entered"]
